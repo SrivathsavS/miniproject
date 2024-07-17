@@ -6,7 +6,7 @@ const webSocket = require("ws");
 const app = express();
 const port = 5001;
 
-app.use(express.static(path.join(__dirname, 'frontend')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const server = app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
