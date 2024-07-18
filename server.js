@@ -2,9 +2,26 @@
 const path = require("path");
 const express = require("express");
 const webSocket = require("ws");
+const helmet = require("helmet");
+const cors = require("cors");
 
 const app = express();
-const port = 5001;
+const port = 443;
+
+// Helmet to set various HTTP headers for security
+app.use(helmet());
+
+// Set Content Security Policy (CSP) header
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ["'self'", "wss://titanium-grizzled-texture.glitch.me"],
+    },
+  })
+);
+// CORS to allow cross-origin requests
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
